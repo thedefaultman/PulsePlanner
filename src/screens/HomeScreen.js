@@ -5,9 +5,11 @@ import { useContext } from "react";
 import { FitnessItems } from "../context/Context";
 import styles from "./Styles/HomeScreenStyles";
 
-const HomeScreen = () => {
+const HomeScreen = ({ route }) => {
   const { calories, minutes, workout, darkMode, setDarkMode } =
     useContext(FitnessItems);
+
+  const { username } = route.params;
 
   return (
     <ScrollView
@@ -33,6 +35,18 @@ const HomeScreen = () => {
               <Ionicons name="moon" size={24} color="black" />
             )}
           </TouchableOpacity>
+        </View>
+
+        {/* Display username */}
+        <View style={{ marginBottom: 20 }}>
+          <Text
+            style={[
+              styles.usernameText,
+              { color: darkMode ? "white" : "black" },
+            ]}
+          >
+            Hey, {username} - Welcome
+          </Text>
         </View>
 
         <View style={styles.cardsRow}>

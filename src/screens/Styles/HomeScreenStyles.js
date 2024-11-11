@@ -15,17 +15,22 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: 50,
+    marginBottom: 30,
   },
   headerText: {
     fontWeight: "bold",
     fontSize: 16,
   },
+  usernameText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginTop: 10,
+  },
   cardsRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: 30,
+    marginBottom: 0,
   },
   shadowCards: {
     width: "32%",
