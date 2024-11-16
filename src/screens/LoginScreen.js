@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import React, { useState, useContext } from "react";
+import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
-import { useContext } from "react";
 import { FitnessItems } from "../context/Context";
 import styles from "./Styles/LoginScreenStyles";
 
@@ -15,7 +14,6 @@ const LoginScreen = () => {
   const handleLogin = () => {
     if (username && password) {
       alert("Logged in successfully!");
-      // Pass username to HomeScreen as a parameter
       navigation.navigate("Home", { username });
     } else {
       alert("Please enter valid credentials.");
@@ -29,19 +27,22 @@ const LoginScreen = () => {
         { backgroundColor: darkMode ? "#1F1F1F" : "#FFFFFF" },
       ]}
     >
-      <Text style={[styles.title, { color: darkMode ? "#FFFFFF" : "#000000" }]}>
-        Welcome to Pulse Planner
-      </Text>
+      {/* Optional background image for a gym feel */}
+      <Image
+        source={require("../../assets/enter-gym-background.jpg")}
+        style={styles.backgroundImage}
+      />
+
+      <Text style={[styles.title]}>Welcome to Pulse Planner</Text>
 
       <TextInput
         style={[
           styles.input,
-          {
-            backgroundColor: darkMode ? "#2a2a2a" : "#f2f2f2",
-            color: darkMode ? "#fff" : "#000",
-          },
+          darkMode && styles.inputDark,
+          username ? styles.inputFocus : null,
         ]}
         placeholder="Username"
+        placeholderTextColor={darkMode ? "#aaa" : "#555"}
         value={username}
         onChangeText={setUsername}
       />
@@ -49,22 +50,18 @@ const LoginScreen = () => {
       <TextInput
         style={[
           styles.input,
-          {
-            backgroundColor: darkMode ? "#2a2a2a" : "#f2f2f2",
-            color: darkMode ? "#fff" : "#000",
-          },
+          darkMode && styles.inputDark,
+          password ? styles.inputFocus : null,
         ]}
         placeholder="Password"
+        placeholderTextColor={darkMode ? "#aaa" : "#555"}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
       />
 
       <TouchableOpacity
-        style={[
-          styles.button,
-          { backgroundColor: darkMode ? "#ff6200" : "#ff6200" },
-        ]}
+        style={[styles.button, styles.buttonActive]}
         onPress={handleLogin}
       >
         <Text style={styles.buttonText}>Login</Text>
