@@ -1,4 +1,4 @@
-  name: Multi-OS Test
+  name: great test
   on: workflow_dispatch
 
   jobs:
